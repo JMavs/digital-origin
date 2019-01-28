@@ -48,4 +48,47 @@ the transfers and the history of the transfer of every bank.
 ## Questions
 Please also supply your answer to the following questions:
 - How would you improve your solution?
+I would improve it adding a new folder inside the `lib` folder
+containing the errors, doing this it can show errors like NoEnoughMoney
+or LimitMoneyInterbankReached.
+
+Another change would be checking (just in order to be sure, check the
+uuid if are free, slugs of banks and everything related to data).
+
+If I had used ActiveRecord (the ORM of RoR) I would have done the change
+with a transaction because if it fails in the exact part of the code
+broke (Maybe CTRL+C), it can subtract the money in the account 1 but not
+add it in the account 2, so it will be a HUGE problem inside the
+ccurrencies' world.
+
+
 - How would you adapt your solution if transfers are not instantaneous?
+I would do an intermediate holder in order to be sure that as fast as it
+can be done, the process follows (get money from account 1 to holder ->
+holder move the money to account 2) in order to not lose the avoid
+cancels in orders an send money to the account 2 by error (because the
+bank of account 1 is slower to make operations for example).
+
+
+## My solution
+I divided my solution in this steps:
+- 1: In order to use the TDD, I wrote the minimal tests and added the suite
+CircleCI.
+- 2: Write the minimal code to pass that tests.
+- 3: Develop the tests with more functionality (increase the code using
+  SOLID principles in order to avoid useless commits).
+- 4: Add the code in order to pass all the tests.
+- 5: The tests an code are working, now it's time to write the
+  "show_me_the_money.rb"
+- 6: Run the script."
+
+## Install dependencies
+- Use Ruby 2.5.3
+- `gem install bundler`
+- `bundle install`
+
+## How to test
+- `rspec`
+
+## How to run the script
+- `ruby show_me_the_money.rb`
